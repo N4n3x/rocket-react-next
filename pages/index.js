@@ -34,8 +34,6 @@ export default function Home() {
       </AppBar>
       <Grid container>
         <Grid item xs={9}>
-          <Button onClick={color}>Switch</Button>
-          <input type="color"></input>
           <RocketGen></RocketGen>
         </Grid>
         <Grid item xs={3}>
