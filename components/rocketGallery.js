@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function RocketGallery() {
+export default function RocketGallery(props) {
+  console.log(props.rockets.data.rockets);
   const classes = useStyles();
 
   return (
@@ -31,52 +32,50 @@ export default function RocketGallery() {
       <Typography variant="h3">Galerie</Typography>
       <Grid container spacing={1} justify="flex-start" alignItems="flex-start" >
         {/* ----------------Start Item ---------------*/}
-        <Grid item>
-          <Paper className={classes.paper}>
-            <Grid container spacing={2}>
-              <Grid item>
-                <ButtonBase className={classes.image}>
-                  <img
-                    className={classes.img}
-                    alt="complex"
-                    src="./images/rocket.svg"
-                  />
-                </ButtonBase>
-              </Grid>
-              <Grid item xs={12} sm container>
-                <Grid item xs container direction="column" spacing={2}>
-                  <Grid item xs>
-                    <Typography gutterBottom variant="subtitle1">
-                      Fusée MK-1 (Dit "La birque")
-                    </Typography>
-                    <Typography variant="body2" gutterBottom>
-                      Une bonne fusée si elle pouvait voler
-                    </Typography>
-                    <Typography variant="body2" color="textSecondary">
-                      SVG
-                    </Typography>
-                  </Grid>
+        {props.rockets.data.rockets.map((item, i) => {
+          return (
+            <Grid key={i} item>
+              <Paper className={classes.paper}>
+                <Grid container spacing={2}>
                   <Grid item>
-                    <Typography variant="body2" style={{ cursor: "pointer" }}>
-                      + d'information
-                    </Typography>
+                    <ButtonBase className={classes.image}>
+                      <img
+                        className={classes.img}
+                        alt="complex"
+                        src={`./images/${item.rkt_slug}.svg`}
+                      />
+                    </ButtonBase>
+                  </Grid>
+                  <Grid item xs={12} sm container>
+                    <Grid item xs container direction="column" spacing={2}>
+                      <Grid item xs>
+                        <Typography gutterBottom variant="subtitle1">
+                          {item.rkt_name}
+                        </Typography>
+                        <Typography variant="body2" gutterBottom>
+                          {item.rkt_desc}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary">
+                          SVG
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <Typography variant="body2" style={{ cursor: "pointer" }}>
+                          + d'information
+                        </Typography>
+                      </Grid>
+                    </Grid>
+                    <Grid item>
+                      <Typography variant="subtitle1"></Typography>
+                    </Grid>
                   </Grid>
                 </Grid>
-                <Grid item>
-                  <Typography variant="subtitle1">$19.00</Typography>
-                </Grid>
-              </Grid>
+              </Paper>
             </Grid>
-          </Paper>
-        </Grid>
+          )
+        })}
         {/* ----------------End Item ---------------*/}
-        <Grid item>
-          <Paper>ITEM 2</Paper>
-        </Grid>
-        <Grid item>
-          <Paper>ITEM n</Paper>
-        </Grid>
       </Grid>
     </Paper>
-  );
+  )
 }
