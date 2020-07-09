@@ -16,9 +16,7 @@ import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos';
 import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos';
 
 const useStyles = makeStyles({
-    root: {
-        maxWidth: 345
-    },
+    root: {},
     media: {
         height: 240,
         margin: "0.5rem"
@@ -30,22 +28,57 @@ const useStyles = makeStyles({
         textAlign: "center",
         padding: "0.5rem"
     },
-    modelSelectContainer:{
-        display:"flex",
+    modelSelectContainer: {
+        display: "flex",
         justifyContent: "space-between",
-        alignItems:"center"
+        alignItems: "center"
     },
+    cardContent: {
+        margin: "2rem"
+    }
 });
 
-function valuetext(value) {
-    return `${value}°C`;
-}
+const colors = ["#677C83","#C08497","#F7AF9D","#F7E3AF","#F3EEC3"]
+
+const marksEnergy = [
+    {
+        value: 0,
+        label: 'Huile de coude'
+    },
+    {
+        value: 1,
+        label: 'Vodka'
+    },
+    {
+        value: 2,
+        label: 'Sans plomb'
+    },
+    {
+        value: 3,
+        label: 'Hydrogène'
+    }, {
+        value: 4,
+        label: 'Matière noir'
+    }
+];
 
 export default function RocketGen() {
     const classes = useStyles();
     let svg = useRef();
+
+    const handleSliderEnergyChange = (event, newValue) => {
+        console.log(svg.current.getSVGDocument().getElementsByClassName("colorA"));
+        let colorA = svg.current.getSVGDocument().getElementsByClassName("colorA");
+        for(let path of colorA){
+            path.setAttribute("fill", colors[newValue])
+        }
+        // svg.current.getSVGDocument().getElementById("aileG").setAttribute("fill", colors[newValue]);
+        
+
+    };
+
     return (
-        <Paper spacing={1}>
+        <Paper>
             <Card className={
                 classes.root
             }>
@@ -59,7 +92,7 @@ export default function RocketGen() {
                 <div className={
                     classes.modelSelectContainer
                 }>
-                    <IconButton >
+                    <IconButton>
                         <ArrowBackIosIcon></ArrowBackIosIcon>
                     </IconButton>
                     <Typography>Sélection du model</Typography>
@@ -78,13 +111,15 @@ export default function RocketGen() {
                         data="./images/rocket.svg"></object>
                 </div>
 
-                <CardContent>
-                    <Typography id="puissance" gutterBottom>
-                        Puissance
+                <CardContent className={
+                    classes.cardContent
+                }>
+                    <Typography id="matiere" gutterBottom>
+                        Matière
                     </Typography>
                     <Slider defaultValue={0}
-                        getAriaValueText={valuetext}
-                        aria-labelledby="puissance"
+                        // getAriaValueText={valuetext}
+                        aria-labelledby="matiere"
                         step={50}
                         marks
                         min={0}
@@ -95,7 +130,7 @@ export default function RocketGen() {
                         Charge utile
                     </Typography>
                     <Slider defaultValue={0}
-                        getAriaValueText={valuetext}
+                        // getAriaValueText={valuetext}
                         aria-labelledby="charge"
                         step={50}
                         marks
@@ -107,13 +142,14 @@ export default function RocketGen() {
                         Carburant
                     </Typography>
                     <Slider defaultValue={0}
-                        getAriaValueText={valuetext}
+                        onChange={handleSliderEnergyChange}
+                        track={false}
                         aria-labelledby="carburant"
-                        step={50}
-                        marks
+                        step={null}
+                        marks={marksEnergy}
                         min={0}
-                        max={255}
-                        valueLabelDisplay="auto"/>
+                        max={4}/>
+                        
 
                 </CardContent>
             </Card>
