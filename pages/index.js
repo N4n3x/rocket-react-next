@@ -2,6 +2,7 @@ import React from 'react'
 import {useRef, useEffect} from 'react'
 import Head from 'next/head'
 import RocketGen from '../components/rocketGen'
+import RocketGallery from '../components/rocketGallery'
 import {AppBar, Toolbar, Grid, Typography, Button} from '@material-ui/core'
 import MenuIcon from '@material-ui/icons/Menu';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -32,14 +33,17 @@ export default function Home() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Grid container>
-        <Grid item xs={9}>
+      <div style={{flexGrow: "1"},{marginTop: "1rem"}}>
+      <Grid container spacing={1} justify="center" alignItems="flex-start">
+        <Grid item xs={8}>
+          <RocketGallery></RocketGallery>
+        </Grid>
+        <Grid item xs={4}>
           <RocketGen></RocketGen>
         </Grid>
-        <Grid item xs={3}>
-
-        </Grid>
       </Grid>
+      </div>
+      
         
       
 
