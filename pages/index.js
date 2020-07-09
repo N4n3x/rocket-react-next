@@ -35,10 +35,10 @@ export default function Home() {
       </AppBar>
       <div style={{flexGrow: "1"},{marginTop: "1rem"}}>
       <Grid container spacing={1} justify="center" alignItems="flex-start">
-        <Grid item xs={8}>
+        <Grid item xs={9}>
           <RocketGallery></RocketGallery>
         </Grid>
-        <Grid item xs={4}>
+        <Grid item xs={3}>
           <RocketGen></RocketGen>
         </Grid>
       </Grid>
