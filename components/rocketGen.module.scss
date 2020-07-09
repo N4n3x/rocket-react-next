@@ -1,0 +1,28 @@
+
+.root {
+    min-width: 450px;
+}
+.media {
+    max-width: 20rem;
+    margin: 0.5rem;
+}
+.mediaContainer {
+    text-align: center;
+}
+.titre {
+    text-align: center;
+    padding: 0.5rem;
+}
+.modelSelectContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.cardContent {
+    margin: 2.5rem;
+}
+.linkSvg{
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
