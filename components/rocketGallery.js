@@ -57,7 +57,7 @@ const RocketGallery = (props) => {
                           SVG
                         </Typography> */}
                       </Grid>
-                      <Grid item class={styles.moreInfo}>
+                      <Grid item className={styles.moreInfo}>
                           <Link key={i} href="/[slug]" as={`/${item?.rkt_slug}`}>
                             {/* <a> */}
                               <Button variant="contained" color="primary" href="#contained-buttons">

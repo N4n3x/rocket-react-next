@@ -180,15 +180,12 @@ const RocketGen = () => {
     };
 
     const genSvg = () => {
-        let s = new DOMParser();
-        let str = s.parseFromString(svg.current.getSVGDocument().activeElement, "image/svg+xml");
-        let blob = new Blob([str], { type: "image/svg+xml" });
-        let urlBlob = URL.createObjectURL(blob)
+        let blob = new Blob([svg.current.getSVGDocument().documentElement.outerHTML], { type:'image/svg+xml;charset=utf-8' });
+        let urlBlob = URL.createObjectURL(blob);
         
         // imgSvg.addEventListener('load', () => URL.revokeObjectURL(urlBlob), {once: true});
         imgSvg.current.href = urlBlob;
         iconSvg.current.getElementsByTagName("path")[0].setAttribute("fill", "#0077b6");
-        console.log(iconSvg.current.getElementsByTagName("path"))
     }
 
     return (
@@ -254,11 +251,10 @@ const RocketGen = () => {
                 <CardActions>
                     <div className={styles.linkSvg}>
                         <Typography>Téléchages ta fusée 🚀</Typography>
-                        <Link ref={imgSvg} download="customRocket.svg"  ><GetAppIcon ref={iconSvg} style={{ fontSize: 100 }} color="disabled"></GetAppIcon></Link>
+                        <Link ref={imgSvg} download="customRocket.svg"><GetAppIcon ref={iconSvg} style={{ fontSize: 100 }} color="disabled"></GetAppIcon></Link>
                     </div>
                 </CardActions>
             </Card>
-            {/* <Button onClick={genSvg}>SVG</Button> */}
         </Paper>
     );
 };
