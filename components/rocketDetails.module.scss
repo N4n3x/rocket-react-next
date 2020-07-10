@@ -1,0 +1,16 @@
+.root{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+.card{
+    width: 40rem;
+    margin: 1rem;
+}
+
+.image{
+    height: 40rem;
+    width: 40rem;
+}

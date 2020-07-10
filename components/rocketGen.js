@@ -46,15 +46,14 @@ const colorsC = ["#677C83","#C08497","#F7AF9D","#F7E3AF","#6d6875"];
 const colorsB = ["#ffffff","#cb997e","#8d99ae","#aed9e0","#1d3557"]; //ok
 const colorsA = ["#ffffff","#457b9d","#e63946","#aed9e0","#1d3557"];
 
-function getRandomColor() {
+const getRandomColor = () => {
     var letters = '0123456789ABCDEF';
     var color = '#';
     for (var i = 0; i < 6; i++) {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-}
-
+};
 const marksEnergy = [
     {
         value: 0,
@@ -130,6 +129,7 @@ const RocketGen = () => {
     // const classes = useStyles();
     let svg = useRef();
     let imgSvg = useRef();
+    let iconSvg = useRef();
     const table = rocketList.length-1;
     
     const handlePrevModele = (e) => {
@@ -187,24 +187,21 @@ const RocketGen = () => {
         
         // imgSvg.addEventListener('load', () => URL.revokeObjectURL(urlBlob), {once: true});
         imgSvg.current.href = urlBlob;
-        console.log(urlBlob)
+        iconSvg.current.getElementsByTagName("path")[0].setAttribute("fill", "#0077b6");
+        console.log(iconSvg.current.getElementsByTagName("path"))
     }
 
     return (
         <Paper>
-            <Card className={
-                styles.root
-            }>
-
-                <Typography gutterBottom variant="h5" component="h2"
-                    className={
-                        styles.titre
-                }>
-                    PIMP YOUR ROCKET !!!
+            <Card className={styles.root}>
+                <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="h2"
+                    className={styles.titre}>
+                    🚀🚀🚀 PIMP YOUR ROCKET !!! 🚀🚀🚀
                 </Typography>
-                <div className={
-                    styles.modelSelectContainer
-                }>
+                <div className={styles.modelSelectContainer}>
                     <IconButton onClick={handlePrevModele}>
                         <ArrowBackIosIcon></ArrowBackIosIcon>
                     </IconButton>
@@ -213,23 +210,15 @@ const RocketGen = () => {
                         <ArrowForwardIosIcon></ArrowForwardIosIcon>
                     </IconButton>
                 </div>
-                <div className={
-                    styles.mediaContainer
-                }>
-                    <object className={
-                            styles.media
-                        }
+                <div className={styles.mediaContainer}>
+                    <object
+                        className={styles.media}
                         type="image/svg+xml"
                         ref={svg}
                         data="http://localhost:3000/images/rocket-2.svg"></object>
                 </div>
-
-                <CardContent className={
-                    styles.cardContent
-                }>
-                    <Typography id="matiere" gutterBottom>
-                        Matière
-                    </Typography>
+                <CardContent className={styles.cardContent}>
+                    <Typography id="matiere" gutterBottom>Matière</Typography>
                     <Slider defaultValue={0}
                         onChange={handleSliderChangeB}
                         track={false}
@@ -239,10 +228,7 @@ const RocketGen = () => {
                         min={0}
                         max={4}
                         />
-
-                    <Typography id="charge" gutterBottom>
-                        Charge utile
-                    </Typography>
+                    <Typography id="charge" gutterBottom>Charge utile</Typography>
                     <Slider defaultValue={0}
                         onChange={handleSliderChangeC}
                         track={false}
@@ -252,7 +238,6 @@ const RocketGen = () => {
                         min={0}
                         max={4}
                         />
-
                     <Typography id="carburant" gutterBottom>
                         Carburant
                     </Typography>
@@ -265,19 +250,14 @@ const RocketGen = () => {
                         min={0}
                         max={4}
                         />
-                        
-
                 </CardContent>
                 <CardActions>
-                    <div className={
-                        styles.linkSvg
-                    }>
-                        <Link ref={imgSvg} download="customRocket.svg"  ><GetAppIcon style={{ fontSize: 100 }} color="disabled"></GetAppIcon></Link>
+                    <div className={styles.linkSvg}>
+                        <Typography>Téléchages ta fusée 🚀</Typography>
+                        <Link ref={imgSvg} download="customRocket.svg"  ><GetAppIcon ref={iconSvg} style={{ fontSize: 100 }} color="disabled"></GetAppIcon></Link>
                     </div>
-                    
                 </CardActions>
             </Card>
-            
             {/* <Button onClick={genSvg}>SVG</Button> */}
         </Paper>
     );
